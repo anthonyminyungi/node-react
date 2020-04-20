@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { registerUser } from '../../../_actions/user_action';
 
@@ -40,7 +41,8 @@ function RegisterPage(props) {
     };
 
     dispatch(registerUser(body)).then((response) => {
-      if (response.payload.register) {
+      console.log(response.payload);
+      if (response.payload.success) {
         props.history.push('/login');
       } else {
         alert('Failed to sign up');
@@ -81,4 +83,4 @@ function RegisterPage(props) {
   );
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);
